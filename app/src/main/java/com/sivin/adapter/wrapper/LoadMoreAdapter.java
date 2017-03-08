@@ -16,27 +16,25 @@ import com.sivin.adapter.utils.WrapperUtils;
 /**
  * Created by Sivin on 2017/2/9.
  */
-public class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class LoadMoreAdapter<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final String TAG = "LoadMoreWrapper";
+    private static final String TAG = "LoadMoreAdapter";
 
     public static final int FLAG_LOADING = 0;
     public static final int FLAG_LOAD_END = 1;
     public static final int FLAG_LOAD_ERR = 2;
-
+    private int mLoadFlag = FLAG_LOADING;
     public static final int ITEM_TYPE_LOAD_MORE = Integer.MAX_VALUE - 2;
 
     private RecyclerView.Adapter mInnerAdapter;
     private View mRootView;
     private int mLayoutId;
 
-    private int mLoadFlag = FLAG_LOADING;
+    private ViewStub mNetWorkStub;
+    private View mLoadingView;
+    private ViewStub mEndStub;
 
-    ViewStub mNetWorkStub;
-    View mLoadingView;
-    ViewStub mEndStub;
-
-    public LoadMoreWrapper(RecyclerView.Adapter adapter) {
+    public LoadMoreAdapter(RecyclerView.Adapter adapter) {
         mInnerAdapter = adapter;
     }
 
@@ -150,19 +148,19 @@ public class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private OnLoadMoreListener mOnLoadMoreListener;
 
-    public LoadMoreWrapper setOnLoadMoreListener(OnLoadMoreListener loadMoreListener) {
+    public LoadMoreAdapter setOnLoadMoreListener(OnLoadMoreListener loadMoreListener) {
         if (loadMoreListener != null) {
             mOnLoadMoreListener = loadMoreListener;
         }
         return this;
     }
 
-    public LoadMoreWrapper setLoadMoreView(View loadMoreView) {
+    public LoadMoreAdapter setLoadMoreView(View loadMoreView) {
         mRootView = loadMoreView;
         return this;
     }
 
-    public LoadMoreWrapper setLoadMoreView(int layoutId) {
+    public LoadMoreAdapter setLoadMoreView(int layoutId) {
         mLayoutId = layoutId;
         return this;
     }
@@ -200,4 +198,28 @@ public class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
         mLoadFlag = FLAG_LOAD_ERR;
 
     }
+
+    public void loading() {
+
+        if (mLoadFlag == FLAG_LOADING) {
+            return;
+        }
+
+        if (mLoadingView == null) {
+            mLoadingView = mRootView.findViewById(R.id.loading_view);
+        }
+
+        mLoadingView.setVisibility(View.VISIBLE);
+
+        if (mNetWorkStub != null) {
+            mNetWorkStub.setVisibility(View.GONE);
+        }
+
+        if (mEndStub != null) {
+            mEndStub.setVisibility(View.GONE);
+        }
+        mLoadFlag = FLAG_LOADING;
+    }
+
+
 }

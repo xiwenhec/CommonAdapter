@@ -20,7 +20,7 @@ import com.sivin.adapter.base.ViewHolder;
 import com.sivin.adapter.decoration.DefalutItemDecoration;
 import com.sivin.adapter.section.SectionAdapter;
 import com.sivin.adapter.section.SectionDecoration;
-import com.sivin.adapter.wrapper.LoadMoreWrapper;
+import com.sivin.adapter.wrapper.LoadMoreAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public Button mButton;
 
-    LoadMoreWrapper<ItemBean1> mLoadMoreWrapper;
+    LoadMoreAdapter<ItemBean1> mLoadMoreWrapper;
 
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
@@ -84,11 +84,11 @@ public class MainActivity extends AppCompatActivity {
 
         mRecycleView.addItemDecoration(new SectionDecoration(adapter2));
 
-        mLoadMoreWrapper = new LoadMoreWrapper<>(adapter2);
+        mLoadMoreWrapper = new LoadMoreAdapter<>(adapter2);
 
         mLoadMoreWrapper.setLoadMoreView(R.layout.sample_common_list_footer);
 
-        mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
+        mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreAdapter.OnLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
                 getNetData();

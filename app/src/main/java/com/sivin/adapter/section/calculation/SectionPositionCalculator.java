@@ -19,15 +19,15 @@ public class SectionPositionCalculator {
         }
 
         //第一个总是有一个Section
-        if (position == 0 && !(mSectionAdapter.getHeaderId(position) < 0)) {
+        if (position == 0 && !(mSectionAdapter.getSectionId(position) < 0)) {
 
             return true;
         }
         //获取头的id
-        long currentSectionId = mSectionAdapter.getHeaderId(position);
+        long currentSectionId = mSectionAdapter.getSectionId(position);
 
         //获取前一个SectionId
-        long previousSectionId = mSectionAdapter.getHeaderId(position - 1);
+        long previousSectionId = mSectionAdapter.getSectionId(position - 1);
 
         if (currentSectionId < 0 || previousSectionId < 0) {
             return false;
@@ -49,8 +49,6 @@ public class SectionPositionCalculator {
     private boolean indexOutOfBounds(int position) {
         return position < 0 || position >= mSectionAdapter.getItemCount();
     }
-
-
 
 
 

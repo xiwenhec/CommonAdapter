@@ -13,7 +13,6 @@ import java.util.List;
 
 
 /**
- *
  * @param <T>
  */
 public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
@@ -57,14 +56,14 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
         //创建一个ViewHolder
         ViewHolder holder = ViewHolder.createViewHolder(mContext, parent, layoutId);
 
-        onViewHolderCreated(holder,holder.getConvertView());
+        onViewHolderCreated(holder, holder.getConvertView());
 
         setListener(parent, holder, viewType);
 
         return holder;
     }
 
-    public void onViewHolderCreated(ViewHolder holder,View itemView){
+    public void onViewHolderCreated(ViewHolder holder, View itemView) {
 
     }
 
@@ -90,7 +89,7 @@ public class MultiItemTypeAdapter<T> extends RecyclerView.Adapter<ViewHolder> {
 
                     int position = viewHolder.getAdapterPosition();
 
-                    mOnItemClickListener.onItemClick(v, viewHolder , position);
+                    mOnItemClickListener.onItemClick(v, viewHolder, position);
                 }
             }
         });

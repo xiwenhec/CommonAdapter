@@ -1,4 +1,4 @@
-package com.sivin.adapter.Test;
+package com.sivin.adapter.decoration;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,7 +15,7 @@ import android.view.View;
  * Created by Sivin on 2017/2/16.
  */
 
-class DefalutItemDecoration extends RecyclerView.ItemDecoration {
+public class DefalutItemDecoration extends RecyclerView.ItemDecoration {
 
 
     private Context mContext;

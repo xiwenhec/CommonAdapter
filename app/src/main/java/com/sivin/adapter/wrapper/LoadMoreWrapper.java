@@ -14,7 +14,6 @@ import com.sivin.adapter.utils.WrapperUtils;
 
 
 /**
- *
  * Created by Sivin on 2017/2/9.
  */
 public class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -96,7 +95,6 @@ public class LoadMoreWrapper<T> extends RecyclerView.Adapter<RecyclerView.ViewHo
             if (mOnLoadMoreListener != null && mLoadFlag == FLAG_LOADING) {
                 mOnLoadMoreListener.onLoadMoreRequested();
             }
-
 
 
             return;

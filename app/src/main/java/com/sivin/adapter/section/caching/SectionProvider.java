@@ -6,9 +6,7 @@ import android.view.View;
 
 public interface SectionProvider {
 
-
    View getSection(RecyclerView recyclerView, int position);
-
 
   void invalidate();
 }

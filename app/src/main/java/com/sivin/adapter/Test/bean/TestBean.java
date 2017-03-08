@@ -1,12 +1,14 @@
 package com.sivin.adapter.Test.bean;
 
+import com.sivin.adapter.section.ISectionBean;
+
 import java.util.List;
 
 /**
  * Created by Sivin on 2017/2/17.
  */
 
-public class BeanWrapper {
+public class TestBean implements ISectionBean{
 
     private int tagId;
 
@@ -18,19 +20,19 @@ public class BeanWrapper {
     private ItemBean3 type2Data;
 
     private List<ItemBean2> list;
-    public BeanWrapper(ItemBean1 type1Data) {
+    public TestBean(ItemBean1 type1Data) {
         this.type1Data = type1Data;
         tagId = type1Data.getTagId();
         tagValue = type1Data.getTagValue();
     }
 
-    public BeanWrapper(ItemBean3 type2Data) {
+    public TestBean(ItemBean3 type2Data) {
         this.type2Data = type2Data;
         tagId = type2Data.getTagId();
         tagValue = type2Data.getTagValue();
     }
 
-    public BeanWrapper(List<ItemBean2> list) {
+    public TestBean(List<ItemBean2> list) {
         this.list = list;
 
         if(list != null && list.size()>0){
@@ -40,17 +42,12 @@ public class BeanWrapper {
 
     }
 
-    public int getTagId() {
-        return tagId;
-    }
 
     public void setTagId(int tagId) {
         this.tagId = tagId;
     }
 
-    public String getTagValue() {
-        return tagValue;
-    }
+
 
     public void setTagValue(String tagValue) {
         this.tagValue = tagValue;
@@ -80,5 +77,15 @@ public class BeanWrapper {
 
     public void setList(List<ItemBean2> list) {
         this.list = list;
+    }
+
+    @Override
+    public int getSectionId() {
+        return tagId;
+    }
+
+    @Override
+    public String getSectionTitle() {
+        return tagValue;
     }
 }

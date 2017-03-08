@@ -1,4 +1,4 @@
-package com.sivin.adapter.Test;
+package com.sivin.adapter.decoration;
 
 import android.content.Context;
 import android.graphics.Canvas;

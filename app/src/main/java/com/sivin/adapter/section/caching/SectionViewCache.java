@@ -22,7 +22,7 @@ public class SectionViewCache implements SectionProvider {
     @Override
     public View getSection(RecyclerView parent, int position) {
 
-        long sectionId = mAdapter.getHeaderId(position);
+        long sectionId = mAdapter.getSectionId(position);
 
         View section = mSectionViews.get(sectionId);
 

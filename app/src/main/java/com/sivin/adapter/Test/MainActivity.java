@@ -11,12 +11,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.sivin.adapter.R;
-import com.sivin.adapter.Test.bean.BeanWrapper;
 import com.sivin.adapter.Test.bean.ItemBean1;
 import com.sivin.adapter.Test.bean.ItemBean2;
 import com.sivin.adapter.Test.bean.ItemBean3;
+import com.sivin.adapter.Test.bean.TestBean;
 import com.sivin.adapter.base.ItemViewDelegate;
 import com.sivin.adapter.base.ViewHolder;
+import com.sivin.adapter.decoration.DefalutItemDecoration;
+import com.sivin.adapter.section.SectionAdapter;
 import com.sivin.adapter.section.SectionDecoration;
 import com.sivin.adapter.wrapper.LoadMoreWrapper;
 
@@ -41,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-    List<BeanWrapper> Datas = new ArrayList<>();
+    List<TestBean> Datas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ItemBean3 bean3 = new ItemBean3(3, "数据1", "类型3");
-                Datas.add(new BeanWrapper(bean3));
+                Datas.add(new TestBean(bean3));
                 mLoadMoreWrapper.notifyDataSetChanged();
             }
         });
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    class Item1Delegate implements ItemViewDelegate<BeanWrapper>{
+    class Item1Delegate implements ItemViewDelegate<TestBean>{
 
 
         @Override
@@ -107,21 +109,21 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public boolean isForViewType(BeanWrapper wrapper, int position) {
+        public boolean isForViewType(TestBean wrapper, int position) {
 
-            Log.d(TAG, "isForViewType: "+wrapper.getTagId()+"position = "+position);
+            Log.d(TAG, "isForViewType: "+wrapper.getSectionId()+"position = "+position);
 
-            return wrapper.getTagId()==1;
+            return wrapper.getSectionId()==1;
         }
 
         @Override
-        public void convert(ViewHolder holder,BeanWrapper wrapper, int position) {
+        public void convert(ViewHolder holder, TestBean wrapper, int position) {
             holder.setText(R.id.text,wrapper.getType1Data().getContent());
         }
     }
 
 
-    class Item3Delegate implements ItemViewDelegate<BeanWrapper>{
+    class Item3Delegate implements ItemViewDelegate<TestBean>{
 
 
         @Override
@@ -130,15 +132,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public boolean isForViewType(BeanWrapper item, int position) {
+        public boolean isForViewType(TestBean item, int position) {
 
 
 
-            return item.getTagId()==3;
+            return item.getSectionId()==3;
         }
 
         @Override
-        public void convert(ViewHolder holder, BeanWrapper wrapper, int position) {
+        public void convert(ViewHolder holder, TestBean wrapper, int position) {
             holder.setText(R.id.text,wrapper.getType3Data().getContent());
         }
     }
@@ -202,13 +204,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         for(ItemBean1 itme1:list1){
-            Datas.add(new BeanWrapper(itme1));
+            Datas.add(new TestBean(itme1));
         }
 
-        //Datas.add(new BeanWrapper(list2));
+        //Datas.add(new TestBean(list2));
 
         for(ItemBean3 itme3:list3){
-            Datas.add(new BeanWrapper(itme3));
+            Datas.add(new TestBean(itme3));
         }
 
 

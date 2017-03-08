@@ -11,7 +11,7 @@ import com.sivin.adapter.base.ViewHolder;
 
 public interface ISectionAdapter<VH extends ViewHolder>{
 
-    long getHeaderId(int position);
+    long getSectionId(int position);
 
     VH onCreateSectionViewHolder(ViewGroup parent);
 

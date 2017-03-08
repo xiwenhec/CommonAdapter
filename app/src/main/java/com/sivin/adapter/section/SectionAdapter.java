@@ -1,4 +1,4 @@
-package com.sivin.adapter.Test;
+package com.sivin.adapter.section;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,9 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sivin.adapter.MultiItemTypeAdapter;
-import com.sivin.adapter.Test.bean.BeanWrapper;
 import com.sivin.adapter.base.ViewHolder;
-import com.sivin.adapter.section.ISectionAdapter;
 
 import java.util.List;
 
@@ -17,25 +15,25 @@ import java.util.List;
  * Created by Sivin on 2017/2/17.
  */
 
-public abstract class SectionAdapter extends MultiItemTypeAdapter implements ISectionAdapter {
+public abstract class SectionAdapter<T extends ISectionBean> extends MultiItemTypeAdapter implements ISectionAdapter {
 
 
     private int mSectionLayoutId;
-    private List<BeanWrapper> mDatas;
+    private List<T> mSectionList;
     private Context mContext;
 
 
-    public SectionAdapter(Context context, int sectionLayoutId, List datas) {
-        super(context, datas);
+    public SectionAdapter(Context context, int sectionLayoutId, List data) {
+        super(context, data);
         mSectionLayoutId = sectionLayoutId;
-        mDatas = datas;
+        mSectionList = data;
         mContext = context;
     }
 
 
     @Override
-    public long getHeaderId(int position) {
-        return mDatas.get(position).getTagId();
+    public long getSectionId(int position) {
+        return mSectionList.get(position).getSectionId();
     }
 
     @Override
@@ -47,7 +45,7 @@ public abstract class SectionAdapter extends MultiItemTypeAdapter implements ISe
 
     @Override
     public void onBindSectionViewHolder(ViewHolder holder, int position) {
-        convertSection(holder, mDatas.get(position).getTagValue());
+        convertSection(holder, mSectionList.get(position).getSectionTitle());
     }
 
     protected abstract void convertSection(ViewHolder holder, String tagValue);
